@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-node-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: flasknode
   template:
     metadata:
       labels:
@@ -11,7 +14,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: <Image>
+        image: 127.0.0.1:32000/hello-world:v2
         imagePullPolicy: Always
         resources:
           limits:
